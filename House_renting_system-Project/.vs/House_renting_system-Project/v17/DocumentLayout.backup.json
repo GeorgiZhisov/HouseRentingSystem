@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\PC\\Documents\\GitHub\\HouseRentingSystem\\House_renting_system-Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0F487AFB-F150-46C6-0802-6B0BA0BA2C80}|House_renting_system-Project.csproj|c:\\users\\pc\\documents\\github\\houserentingsystem\\house_renting_system-project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F487AFB-F150-46C6-0802-6B0BA0BA2C80}|House_renting_system-Project.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0F487AFB-F150-46C6-0802-6B0BA0BA2C80}|House_renting_system-Project.csproj|c:\\users\\pc\\documents\\github\\houserentingsystem\\house_renting_system-project\\views\\house\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{0F487AFB-F150-46C6-0802-6B0BA0BA2C80}|House_renting_system-Project.csproj|solutionrelative:views\\house\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0F487AFB-F150-46C6-0802-6B0BA0BA2C80}|House_renting_system-Project.csproj|c:\\users\\pc\\documents\\github\\houserentingsystem\\house_renting_system-project\\views\\house\\allhouses.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{0F487AFB-F150-46C6-0802-6B0BA0BA2C80}|House_renting_system-Project.csproj|solutionrelative:views\\house\\allhouses.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0F487AFB-F150-46C6-0802-6B0BA0BA2C80}|House_renting_system-Project.csproj|c:\\users\\pc\\documents\\github\\houserentingsystem\\house_renting_system-project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0F487AFB-F150-46C6-0802-6B0BA0BA2C80}|House_renting_system-Project.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0F487AFB-F150-46C6-0802-6B0BA0BA2C80}|House_renting_system-Project.csproj|c:\\users\\pc\\documents\\github\\houserentingsystem\\house_renting_system-project\\views\\auth\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -48,11 +48,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Details.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\HouseRentingSystem\\House_renting_system-Project\\Views\\House\\Details.cshtml",
               "RelativeDocumentMoniker": "Views\\House\\Details.cshtml",
@@ -65,7 +65,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "AllHouses.cshtml",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\HouseRentingSystem\\House_renting_system-Project\\Views\\House\\AllHouses.cshtml",
               "RelativeDocumentMoniker": "Views\\House\\AllHouses.cshtml",
@@ -101,15 +101,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\HouseRentingSystem\\House_renting_system-Project\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\HouseRentingSystem\\House_renting_system-Project\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T09:38:43.863Z"
+              "WhenOpened": "2026-03-31T09:38:43.863Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
