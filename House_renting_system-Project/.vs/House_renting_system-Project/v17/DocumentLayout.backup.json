@@ -26,19 +26,19 @@
       "AbsoluteMoniker": "D:0:0:{6F0AE774-032F-DF75-527C-176088D91232}|..\\House_renting_system-Project.Data\\House_renting_system-Project.Data.csproj|c:\\users\\pc\\documents\\github\\houserentingsystem\\house_renting_system-project.data\\house_renting_system-project.data.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\PC\\Documents\\GitHub\\HouseRentingSystem\\House_renting_system-Project.Data\\Configurations\\HouseConfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6F0AE774-032F-DF75-527C-176088D91232}|..\\House_renting_system-Project.Data\\House_renting_system-Project.Data.csproj|c:\\users\\pc\\documents\\github\\houserentingsystem\\house_renting_system-project.data\\configurations\\houseconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\PC\\Documents\\GitHub\\HouseRentingSystem\\House_renting_system-Project.Data\\Configurations\\DataSeeds.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6F0AE774-032F-DF75-527C-176088D91232}|..\\House_renting_system-Project.Data\\House_renting_system-Project.Data.csproj|c:\\users\\pc\\documents\\github\\houserentingsystem\\house_renting_system-project.data\\configurations\\dataseeds.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\PC\\Documents\\GitHub\\HouseRentingSystem\\House_renting_system-Project.Data\\Configurations\\CategoryConfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6F0AE774-032F-DF75-527C-176088D91232}|..\\House_renting_system-Project.Data\\House_renting_system-Project.Data.csproj|c:\\users\\pc\\documents\\github\\houserentingsystem\\house_renting_system-project.data\\configurations\\categoryconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\PC\\Documents\\GitHub\\HouseRentingSystem\\House_renting_system-Project.Data\\Configurations\\AgentConfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6F0AE774-032F-DF75-527C-176088D91232}|..\\House_renting_system-Project.Data\\House_renting_system-Project.Data.csproj|c:\\users\\pc\\documents\\github\\houserentingsystem\\house_renting_system-project.data\\configurations\\agentconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\PC\\Documents\\GitHub\\HouseRentingSystem\\House_renting_system-Project.Data\\Configurations\\Configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6F0AE774-032F-DF75-527C-176088D91232}|..\\House_renting_system-Project.Data\\House_renting_system-Project.Data.csproj|c:\\users\\pc\\documents\\github\\houserentingsystem\\house_renting_system-project.data\\configurations\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -174,7 +174,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "House_renting_system-Project.Data",
+              "Title": "House_renting_system-Project.Data.csproj",
               "DocumentMoniker": "C:\\Users\\PC\\Documents\\GitHub\\HouseRentingSystem\\House_renting_system-Project.Data\\House_renting_system-Project.Data.csproj",
               "RelativeDocumentMoniker": "..\\House_renting_system-Project.Data\\House_renting_system-Project.Data.csproj",
               "ToolTip": "C:\\Users\\PC\\Documents\\GitHub\\HouseRentingSystem\\House_renting_system-Project.Data\\House_renting_system-Project.Data.csproj",
