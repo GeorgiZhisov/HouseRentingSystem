@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Server Error";
+}
+
+<div class="container mt-5">
+    <div class="text-center">
+        <h1 class="display-1 text-secondary fw-bold">500</h1>
+        <h2 class="mb-3">Server Error</h2>
+        <p class="lead text-muted">
+            Something unexpected happened while processing your request.
+        </p>
+        <p class="mb-4">
+            Please try again later.
+        </p>
+
+        <a asp-controller="Home"
+           asp-action="Index"
+           class="btn btn-primary btn-lg me-2">
+            Home Page
+        </a>
+
+        <button onclick="history.back()"
+                class="btn btn-outline-dark btn-lg">
+            Go Back
+        </button>
+    </div>
+
+    <hr class="mt-5" />
+
+    <div class="text-center text-muted">
+        House Renting System
+    </div>
+</div>

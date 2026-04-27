@@ -6,19 +6,20 @@ namespace House_Renting_System.Models.Auth
     {
         [Required]
         [StringLength(30, MinimumLength = 3)]
-        [Display(Name = "Username")]
         public string Username { get; set; } = null!;
 
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
         public string Email { get; set; } = null!;
 
         [Required]
         [DataType(DataType.Password)]
         [StringLength(100, MinimumLength = 6)]
-        [Display(Name = "Password")]
         public string Password { get; set; } = null!;
 
+        [Required]
+        [DataType(DataType.Password)]
+        [Compare(nameof(Password), ErrorMessage = "Passwords do not match.")]
+        public string ConfirmPassword { get; set; } = null!;
     }
 }

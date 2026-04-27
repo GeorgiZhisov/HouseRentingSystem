@@ -1,5 +1,5 @@
-﻿using House_Renting_System.Models.Auth;
-using HouseRentingSystem.Data.Data.Entities;
+﻿using HouseRentingSystem.Data.Data.Entities;
+using House_Renting_System.Models.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,40 +7,52 @@ namespace House_Renting_System.Controllers
 {
     public class AuthController : Controller
     {
-
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
-        public AuthController(UserManager<ApplicationUser> userManager,
+
+        public AuthController(
+            UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
+
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
+
             var user = await userManager.FindByEmailAsync(model.Email);
+
             if (user == null)
             {
-                //ModelState.AddModelError();
+                ModelState.AddModelError(string.Empty, "Invalid email or password.");
                 return View(model);
             }
 
-            var result = await userManager.CheckPasswordAsync(user, model.Password);
-            if (result == true)
+            var result = await signInManager.PasswordSignInAsync(
+                user.UserName!,
+                model.Password,
+                model.RememberMe,
+                false);
+
+            if (result.Succeeded)
             {
-                await signInManager.SignInAsync(user, model.RememberMe);
                 return RedirectToAction("Index", "Home");
             }
+
+            ModelState.AddModelError(string.Empty, "Invalid email or password.");
             return View(model);
         }
 
@@ -49,36 +61,51 @@ namespace House_Renting_System.Controllers
         {
             return View();
         }
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-            var user = await userManager.FindByEmailAsync(model.Email);
-            if (user != null)
+
+            var userByEmail = await userManager.FindByEmailAsync(model.Email);
+            if (userByEmail != null)
             {
-                ModelState.AddModelError("", "User already exists");
+                ModelState.AddModelError(nameof(model.Email), "This email is already taken.");
                 return View(model);
             }
 
-            var newUser = new ApplicationUser()
+            var userByUsername = await userManager.FindByNameAsync(model.Username);
+            if (userByUsername != null)
             {
-                Email = model.Email,
-                UserName = model.Username
+                ModelState.AddModelError(nameof(model.Username), "This username is already taken.");
+                return View(model);
+            }
+
+            var user = new ApplicationUser
+            {
+                UserName = model.Username,
+                Email = model.Email
             };
 
-            var result = await userManager.CreateAsync(newUser, model.Password);
-            if (result.Succeeded)
+            var result = await userManager.CreateAsync(user, model.Password);
+
+            if (!result.Succeeded)
             {
-                return RedirectToAction(nameof(Login));
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+
+                return View(model);
             }
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError(string.Empty, error.Description);
-            }
-            return View(model);
+
+            await signInManager.SignInAsync(user, false);
+
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]

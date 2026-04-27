@@ -5,6 +5,8 @@ namespace House_Renting_System.Models.House
 {
     public class HouseFormViewModel
     {
+        public int Id { get; set; } 
+
         [Required(ErrorMessage = "Title is required")]
         [StringLength(100, MinimumLength = 10, ErrorMessage = "Title must be between 10 and 100 characters")]
         public string Title { get; set; } = null!;
