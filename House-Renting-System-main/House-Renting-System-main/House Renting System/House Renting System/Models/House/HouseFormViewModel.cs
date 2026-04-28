@@ -1,5 +1,6 @@
 ﻿using House_Renting_System.Models.House.Helpers;
 using System.ComponentModel.DataAnnotations;
+using static HouseRentingSystem.Data.Data.DataConstants;
 
 namespace House_Renting_System.Models.House
 {
@@ -34,8 +35,8 @@ namespace House_Renting_System.Models.House
 
 
 
-        //[Required(ErrorMessage = "Agent is required")]
-        //public int AgentId { get; set; }
-        //public Agent Agent { get; set; }
+       // [Required(ErrorMessage = "Agent is required")]
+       // public int AgentId { get; set; }
+       //public Agent Agent { get; set; }
     }
 }

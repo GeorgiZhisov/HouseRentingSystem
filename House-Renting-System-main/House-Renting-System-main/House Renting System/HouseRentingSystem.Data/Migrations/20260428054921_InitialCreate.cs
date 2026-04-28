@@ -2,14 +2,12 @@
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+#pragma warning disable CA1814
 
 namespace HouseRentingSystem.Data.Migrations
 {
-    /// <inheritdoc />
-    public partial class NewMig : Migration
+    public partial class InitialCreate : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
@@ -39,7 +37,7 @@ namespace HouseRentingSystem.Data.Migrations
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "Name",
-                value: "Single-Family huose");
+                value: "Single-Family house");
 
             migrationBuilder.InsertData(
                 table: "Categories",
@@ -52,12 +50,78 @@ namespace HouseRentingSystem.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[]
+                {
+                    "Id",
+                    "UserName",
+                    "NormalizedUserName",
+                    "Email",
+                    "NormalizedEmail",
+                    "EmailConfirmed",
+                    "PasswordHash",
+                    "SecurityStamp",
+                    "ConcurrencyStamp",
+                    "PhoneNumberConfirmed",
+                    "TwoFactorEnabled",
+                    "LockoutEnabled",
+                    "AccessFailedCount"
+                },
+                values: new object[]
+                {
+                    "13d2281e-1912-45f4-8aef-9c1288ac7fbc",
+                    "agent@test.com",
+                    "AGENT@TEST.COM",
+                    "agent@test.com",
+                    "AGENT@TEST.COM",
+                    true,
+                    null,
+                    "13d2281e-1912-45f4-8aef-9c1288ac7fbc",
+                    "13d2281e-1912-45f4-8aef-9c1288ac7fbc",
+                    false,
+                    false,
+                    true,
+                    0
+                });
+
+            migrationBuilder.InsertData(
                 table: "Houses",
-                columns: new[] { "Id", "Address", "AgentId", "CategoryId", "Description", "ImageUrl", "PricePerMonth", "RenterId", "Title" },
+                columns: new[]
+                {
+                    "Id",
+                    "Address",
+                    "AgentId",
+                    "CategoryId",
+                    "Description",
+                    "ImageUrl",
+                    "PricePerMonth",
+                    "RenterId",
+                    "Title"
+                },
                 values: new object[,]
                 {
-                    { 1, "North London, UK (near the border)", "13d2281e-1912-45f4-8aef-9c1288ac7fbc", 2, "A big house for your whole family. Don't miss to buy a house with three bedrooms.", "https://www.luxury-architecture.net/wp-content/uploads/2017/12/1513217889-7597-FAIRWAYS-010.jpg", 2100.00m, null, "Big House Marina" },
-                    { 2, "Near the Sea Garden in Burgas, Bulgaria", "13d2281e-1912-45f4-8aef-9c1288ac7fbc", 2, "It has the best comfort you will ever ask for. With two bedrooms, it is great for your family.", "https://cf.bstatic.com/xdata/images/hotel/max1024x768/179489660.jp?k=2029f6d9589b49c95dcc9503a265e292c2cdfcb5277487a0050397c3f8dd545a&o=&hp=1", 1200.00m, null, "Family House Comfort" }
+                    {
+                        1,
+                        "North London, UK (near the border)",
+                        "13d2281e-1912-45f4-8aef-9c1288ac7fbc",
+                        2,
+                        "A big house for your whole family. Don't miss to buy a house with three bedrooms.",
+                        "https://www.luxury-architecture.net/wp-content/uploads/2017/12/1513217889-7597-FAIRWAYS-010.jpg",
+                        2100.00m,
+                        null,
+                        "Big House Marina"
+                    },
+                    {
+                        2,
+                        "Near the Sea Garden in Burgas, Bulgaria",
+                        "13d2281e-1912-45f4-8aef-9c1288ac7fbc",
+                        2,
+                        "It has the best comfort you will ever ask for. With two bedrooms, it is great for your family.",
+                        "https://cf.bstatic.com/xdata/images/hotel/max1024x768/179489660.jp?k=2029f6d9589b49c95dcc9503a265e292c2cdfcb5277487a0050397c3f8dd545a&o=&hp=1",
+                        1200.00m,
+                        null,
+                        "Family House Comfort"
+                    }
                 });
 
             migrationBuilder.AddForeignKey(
@@ -69,12 +133,26 @@ namespace HouseRentingSystem.Data.Migrations
                 onDelete: ReferentialAction.Restrict);
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
                 name: "FK_Houses_AspNetUsers_AgentId",
                 table: "Houses");
+
+            migrationBuilder.DeleteData(
+                table: "Houses",
+                keyColumn: "Id",
+                keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "Houses",
+                keyColumn: "Id",
+                keyValue: 2);
+
+            migrationBuilder.DeleteData(
+                table: "AspNetUsers",
+                keyColumn: "Id",
+                keyValue: "13d2281e-1912-45f4-8aef-9c1288ac7fbc");
 
             migrationBuilder.DeleteData(
                 table: "Categories",
@@ -90,16 +168,6 @@ namespace HouseRentingSystem.Data.Migrations
                 table: "Categories",
                 keyColumn: "Id",
                 keyValue: 5);
-
-            migrationBuilder.DeleteData(
-                table: "Houses",
-                keyColumn: "Id",
-                keyValue: 1);
-
-            migrationBuilder.DeleteData(
-                table: "Houses",
-                keyColumn: "Id",
-                keyValue: 2);
 
             migrationBuilder.AlterColumn<int>(
                 name: "AgentId",
@@ -121,6 +189,7 @@ namespace HouseRentingSystem.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Agents", x => x.Id);
+
                     table.ForeignKey(
                         name: "FK_Agents_AspNetUsers_UserId",
                         column: x => x.UserId,
