@@ -9,7 +9,8 @@ namespace House_Renting_System
     public class Program
     {
         public static void Main(string[] args)
-        {
+
+        { 
             var builder = WebApplication.CreateBuilder(args);
 
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -37,6 +38,7 @@ namespace House_Renting_System
             });
 
             builder.Services.AddControllersWithViews();
+            
 
             var app = builder.Build();
 

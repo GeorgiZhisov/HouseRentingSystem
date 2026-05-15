@@ -1,55 +1,91 @@
-﻿@model IEnumerable<House_Renting_System.Models.House.HousesViewModel>
+﻿@model AllHousesQueryModel
+
+@{
+    ViewBag.Title = "All Houses";
+}
 
 <h2 class="text-center">@ViewBag.Title</h2>
 <hr />
 
-<div class="text-center row">
-    @foreach (var house in Model)
-    {
-        <div class="card col-4 m-2 p-0" style="width: 20rem;">
-            <img class="card-img-top" src="@house.ImageUrl" alt="House Image">
-
-            <div class="card-body">
-                <h5 class="card-title">@house.Name</h5>
-                <p class="card-text">@house.Address</p>
-            </div>
-
-            <div class="card-footer">
-                <a asp-controller="House"
-                   asp-action="Details"
-                   asp-route-id="@house.Id"
-                   class="btn btn-info">
-                    Details
-                </a>
-
-                @if (User.Identity != null && User.Identity.IsAuthenticated && house.CurentUserIsOwner)
+<form method="get">
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label asp-for="Category"></label>
+            <select asp-for="Category" class="form-control">
+                <option value="">All</option>
+                @foreach (var category in Model.Categories)
                 {
-                    <a asp-controller="House"
-                       asp-action="Edit"
-                       asp-route-id="@house.Id"
-                       class="btn btn-warning">
-                        Edit
-                    </a>
-
-                    <a asp-controller="House"
-                       asp-action="Delete"
-                       asp-route-id="@house.Id"
-                       class="btn btn-danger">
-                        Delete
-                    </a>
+                    <option value="@category">@category</option>
                 }
+            </select>
+        </div>
+
+        <div class="form-group col-md-3">
+            <label asp-for="SearchTerm"></label>
+            <input asp-for="SearchTerm" class="form-control" placeholder="..." />
+        </div>
+
+        <div class="form-group col-md-3">
+            <label asp-for="Sorting"></label>
+            <select asp-for="Sorting" class="form-control">
+                <option value="0">Newest</option>
+                <option value="1">Lowest price first</option>
+                <option value="2">Not rented first</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group mt-4">
+                <input type="submit" value="Search" class="btn btn-primary" />
             </div>
         </div>
+    </div>
+</form>
+
+@{
+    var previousPage = Model.CurrentPage - 1;
+
+    if (previousPage < 1)
+    {
+        previousPage = 1;
     }
+
+    var maxPage = Math.Ceiling((double)Model.TotalHousesCount / AllHousesQueryModel.HousesPerPage);
+
+    var shouldButtonBeDisabled = Model.CurrentPage == maxPage || !Model.Houses.Any();
+}
+
+<div class="row mb-5 mt-3">
+    <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
+           asp-controller="House"
+           asp-action="AllHouses"
+           asp-route-currentPage="@previousPage"
+           asp-route-category="@Model.Category"
+           asp-route-searchTerm="@Model.SearchTerm"
+           asp-route-sorting="@((int)Model.Sorting)"><<</a>
+    </div>
+
+    <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-md-end">
+        <a class="btn btn-primary @(shouldButtonBeDisabled ? "disabled" : string.Empty)"
+           asp-controller="House"
+           asp-action="AllHouses"
+           asp-route-currentPage="@(Model.CurrentPage + 1)"
+           asp-route-category="@Model.Category"
+           asp-route-searchTerm="@Model.SearchTerm"
+           asp-route-sorting="@((int)Model.Sorting)">>></a>
+    </div>
 </div>
 
-@if (User.Identity != null && User.Identity.IsAuthenticated)
+@if (!Model.Houses.Any())
 {
-    <div class="mt-4 text-center">
-        <a asp-controller="House"
-           asp-action="CreateHouse"
-           class="btn btn-primary">
-            Register House
-        </a>
-    </div>
+    <h2 class="text-center">No houses found by the given criteria!</h2>
 }
+
+<div class="row">
+    @foreach (var house in Model.Houses)
+    {
+        <partial name="_HousePartial" model="@house" />
+    }
+</div>              
+9

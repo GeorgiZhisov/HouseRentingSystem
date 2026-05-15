@@ -16,16 +16,51 @@ namespace House_Renting_System.Controllers
         {
             this.context = context;
         }
-
         [HttpGet]
-        public async Task<IActionResult> AllHouses()
+        public async Task<IActionResult> AllHouses([FromQuery] AllHousesQueryModel query)
         {
             try
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-                var houses = await context.Houses
+                var housesQuery = context.Houses.AsQueryable();
+
+                if (!string.IsNullOrWhiteSpace(query.Category))
+                {
+                    housesQuery = housesQuery
+                        .Where(h => h.Category.Name == query.Category);
+                }
+
+                if (!string.IsNullOrWhiteSpace(query.SearchTerm))
+                {
+                    string searchTerm = query.SearchTerm.ToLower();
+
+                    housesQuery = housesQuery
+                        .Where(h =>
+                            h.Title.ToLower().Contains(searchTerm) ||
+                            h.Address.ToLower().Contains(searchTerm) ||
+                            h.Description.ToLower().Contains(searchTerm));
+                }
+
+                housesQuery = query.Sorting switch
+                {
+                    HouseSorting.Price => housesQuery.OrderBy(h => h.PricePerMonth),
+                    HouseSorting.NotRentedFirst => housesQuery
+                        .OrderBy(h => h.RenterId != null)
+                        .ThenByDescending(h => h.Id),
+                    _ => housesQuery.OrderByDescending(h => h.Id)
+                };
+
+                query.TotalHousesCount = await housesQuery.CountAsync();
+
+                query.Categories = await context.Categories
                     .AsNoTracking()
+                    .Select(c => c.Name)
+                    .ToListAsync();
+
+                query.Houses = await housesQuery
+                    .Skip((query.CurrentPage - 1) * AllHousesQueryModel.HousesPerPage)
+                    .Take(AllHousesQueryModel.HousesPerPage)
                     .Select(h => new HousesViewModel
                     {
                         Id = h.Id,
@@ -37,11 +72,12 @@ namespace House_Renting_System.Controllers
                     .ToListAsync();
 
                 ViewBag.Title = "All Houses";
-                return View(houses);
+
+                return View(query);
             }
-            catch
+            catch (Exception ex)
             {
-                return RedirectToAction("ServerError", "Home");
+                return Content(ex.Message);
             }
         }
 
@@ -144,31 +180,16 @@ namespace House_Renting_System.Controllers
         [Authorize]
         public async Task<IActionResult> MyHouses()
         {
-            try
-            {
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-                var houses = await context.Houses
-                    .AsNoTracking()
-                    .Where(h => h.AgentId == userId)
-                    .Select(h => new HousesViewModel
-                    {
-                        Id = h.Id,
-                        Name = h.Title,
-                        Address = h.Address,
-                        ImageUrl = h.ImageUrl,
-                        CurentUserIsOwner = true
-                    })
-                    .ToListAsync();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-                ViewBag.Title = "My Houses";
-                return View(nameof(AllHouses), houses);
-            }
-            catch
-            {
-                return RedirectToAction("ServerError", "Home");
-            }
+         
+
+            ViewBag.Title = "My Houses";
+            return View(nameof(AllHouses), houses);
         }
+
+    
 
         [HttpGet]
         [Authorize]

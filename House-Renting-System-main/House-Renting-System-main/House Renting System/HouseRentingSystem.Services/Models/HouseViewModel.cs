@@ -1,6 +1,6 @@
-﻿namespace House_Renting_System.Models.House
+﻿namespace House_Renting_System.Services.Models.House
 {
-    public class HousesViewModel
+    public class HouseViewModel
     {
         public int Id { get; set; }
 

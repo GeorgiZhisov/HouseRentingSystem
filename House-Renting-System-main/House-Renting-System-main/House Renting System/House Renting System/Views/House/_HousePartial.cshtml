@@ -1,0 +1,52 @@
+﻿@model House_Renting_System.Models.House.HousesViewModel
+
+<div class="col-md-4 mb-4">
+    <div class="card h-100 shadow-sm">
+
+        <!-- Image -->
+        <img class="card-img-top"
+             src="@Model.ImageUrl"
+             alt="House Image"
+             style="height: 220px; object-fit: cover; width: 100%;">
+
+        <!-- Body -->
+        <div class="card-body text-center d-flex flex-column">
+
+            <h5 class="card-title">@Model.Name</h5>
+
+            <p class="card-text">
+                <strong>Address:</strong><br />
+                @Model.Address
+            </p>
+
+            <!-- Buttons -->
+            <div class="mt-auto">
+
+                <a asp-controller="House"
+                   asp-action="Details"
+                   asp-route-id="@Model.Id"
+                   class="btn btn-success btn-sm me-1">
+                    Details
+                </a>
+
+                @if (User.Identity != null && User.Identity.IsAuthenticated && Model.CurentUserIsOwner)
+                {
+                    <a asp-controller="House"
+                       asp-action="Edit"
+                       asp-route-id="@Model.Id"
+                       class="btn btn-warning btn-sm me-1">
+                        Edit
+                    </a>
+
+                    <a asp-controller="House"
+                       asp-action="Delete"
+                       asp-route-id="@Model.Id"
+                       class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
